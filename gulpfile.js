@@ -1,4 +1,4 @@
-// npm install --save-dev gulp exit gulp-sass minimist require-dir gulp-autoprefixer gulp-rename @babel/core gulp-babel gulp-uglify
+// npm install --save-dev gulp exit gulp-sass minimist require-dir gulp-autoprefixer gulp-rename @babel/core gulp-babel gulp-uglify gulp-postcss wx-px2rpx 
 
 
 // 拆分gulpfile
