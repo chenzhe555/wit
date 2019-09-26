@@ -10,11 +10,21 @@
   "author": "376811578@qq.com",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.5.5",
     "cross-env": "^6.0.0",
     "del": "^5.1.0",
     "exit": "^0.1.2",
     "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
     "minimist": "^1.2.0",
     "require-dir": "^1.2.0"
-  }
+  },
+  "browserslist": [
+    "iOS >= 9",
+    "Android >= 4"
+  ]
 }

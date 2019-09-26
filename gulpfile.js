@@ -1,3 +1,6 @@
+// npm install --save-dev gulp exit gulp-sass minimist require-dir gulp-autoprefixer gulp-rename @babel/core gulp-babel gulp-uglify
+
+
 // 拆分gulpfile
 const requireDir = require('require-dir');
 requireDir('./build/gulp');
@@ -5,5 +8,8 @@ requireDir('./build/gulp');
 const commandParams = require('./build/command/params').default;
 console.log(commandParams);
 
+
+// main
 const gulp = require('gulp');
-gulp.task('default', gulp.series(['clean', 'copy']))
+const { task, series, parallel } = gulp;
+task('default', series(['clean', 'copy', 'scss', 'js']))

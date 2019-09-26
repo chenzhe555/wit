@@ -6,7 +6,11 @@ const exit = require('exit');
 gulp.task('clean', function (callback) {
     console.log('删除dist')
 
-    del(['dists/**']).then(paths => {
+    // 不清除项目配置文件
+    del([
+        'dist/**', 
+        '!dist/project.config.json'
+    ]).then(paths => {
         callback()
     }).catch(error => {
         console.log('删除dist文件失败,请检查后重试')
