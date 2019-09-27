@@ -1,13 +1,13 @@
 import WXRequest from '@/http/index.js';
 
 export default {
-    test: () => {
+    'test': () => {
         WXRequest.getInstance().post('http://localhost:8138/info/allProject.gos')
-        .then(res => {
-            console.log(res);
-        })
-        .catch(error => {
-            console.log(error);
-        });
+            .then(res => {
+                console.log(res);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
-}
+};
