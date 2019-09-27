@@ -2,6 +2,8 @@
 //获取应用实例
 const app = getApp()
 
+import AccountService from '@/http/account.js';
+
 Page({
   data: {
     motto: 'Hello World',
@@ -15,6 +17,9 @@ Page({
     // wx.navigateTo({
     //   url: '../logs/logs'
     // })
+    AccountService.test();
+    
+    // WXRequest.getIntance().post();
   },
   onLoad: function () {
     if (app.globalData.userInfo) {

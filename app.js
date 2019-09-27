@@ -16,7 +16,6 @@ App({
 
     extendWX()
     
-
     // 登录
     wx.login({
       success: res => {

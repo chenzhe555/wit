@@ -3,6 +3,10 @@ const defaultAPIs = [
     'showToast'
 ]
 
+/**
+ * 将微信中的API转换成Promise实现
+ * @param {array}} funcs WX的API数组
+ */
 function wxAPIPromise(funcs = defaultAPIs) {
     let obj = {}
     // wx存在并且 APIs是数组
@@ -10,11 +14,11 @@ function wxAPIPromise(funcs = defaultAPIs) {
         funcs.forEach(item => {
             // 如果存在该方法
             if(wx[item] && typeof wx[item] === 'function') {
-                obj[item] = (argvs = {}) => {
+                obj[item] = (params = {}) => {
                     return new Promise((resolve, reject) => {
-                        argvs['success'] = resolve;
-                        argvs['fail'] = reject;
-                        wx[item](argvs);
+                        params['success'] = resolve;
+                        params['fail'] = reject;
+                        wx[item](params);
                     })
                 }
             }
