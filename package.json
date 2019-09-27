@@ -4,8 +4,8 @@
   "description": "wit",
   "main": "a.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build:dev": "echo \"ChenZhe\""
+    "build:dev": "gulp --watch",
+    "build": "gulp"
   },
   "author": "376811578@qq.com",
   "license": "MIT",
@@ -21,6 +21,7 @@
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
     "gulp-uglify": "^3.0.2",
+    "gulp-wechat-weapp-src-alisa": "^1.0.2",
     "minimist": "^1.2.0",
     "require-dir": "^1.2.0",
     "wx-px2rpx": "^1.2.2"

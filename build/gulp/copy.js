@@ -10,9 +10,11 @@ task('copy', callback => {
         'app.js', 
         'app.json', 
         'app.wxss',
+        'sitemap.json',
         'src/**',
         '!src/**/*.js',
-        '!src/**/*.scss'
+        '!src/**/*.scss',
+        '!src/**/*.wxss'
     ]).pipe(dest('dist'));
 
     // 判断是否存在项目配置文件,如果不存在，则复制项目外的至此

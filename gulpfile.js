@@ -1,4 +1,4 @@
-// npm install --save-dev gulp exit gulp-sass minimist require-dir gulp-autoprefixer gulp-rename @babel/core gulp-babel gulp-uglify gulp-postcss wx-px2rpx 
+// npm install --save-dev gulp exit gulp-sass minimist require-dir gulp-autoprefixer gulp-rename @babel/core gulp-babel gulp-uglify gulp-postcss wx-px2rpx gulp-wechat-weapp-src-alisa
 
 
 // 拆分gulpfile
@@ -7,9 +7,19 @@ requireDir('./build/gulp');
 // 命令行参数
 const commandParams = require('./build/command/params').default;
 console.log(commandParams);
+const gulp = require('gulp');
+const { task, series, parallel, watch } = gulp;
 
+// watch 
+function watchProject() {
+    watch(['src/**'], series('copy'));
+    watch(['src/**/*.scss'], series('scss'));
+    watch(['src/**/*.js', 'app.js'], series('js'))
+}
 
 // main
-const gulp = require('gulp');
-const { task, series, parallel } = gulp;
-task('default', series(['clean', 'copy', 'scss', 'js']))
+if(commandParams.watch) {
+    task('default', series(['clean', parallel('copy', 'scss', 'js'), watchProject]))
+} else {
+    task('default', series(['clean', parallel('copy', 'scss', 'js')]))
+}

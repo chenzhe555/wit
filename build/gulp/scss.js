@@ -13,6 +13,7 @@ gulp.task('scss', function (callback) {
     src(['src/**/*.scss'])
     // outputStyle: nested, expanded, compact, compressed
     .pipe(scss({outputStyle: 'nested'}).on('error', scss.logError))
+    // px转rpx
     .pipe(postcss([px2rpx({proportion: 2})]))
     // 补齐前缀
     .pipe(autoprefixer())
