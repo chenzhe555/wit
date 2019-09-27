@@ -4,6 +4,7 @@ import Toast from 'libs/utils/toast.js'
 // wx扩展
 function extendWX () {
   wx.apis = wxAPIPromise();
+  Toast.showStrategy = Toast.toastManagerStrategy.Queue
   wx.toast = Toast;
 }
 
@@ -16,7 +17,6 @@ App({
     wx.setStorageSync('logs', logs)
 
     extendWX()
-    console.log(wx.toast);
     
     // 登录
     wx.login({

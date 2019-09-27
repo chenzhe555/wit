@@ -13,11 +13,18 @@ Page({
   },
   //事件处理函数
   bindViewTap: function() {
-    wx.apis.showToast({'title': '21kdabdbs12'});
+    // wx.apis.showToast({'title': '21kdabdbs12'});
     // wx.navigateTo({
     //   url: '../logs/logs'
     // })
-    AccountService.test();
+    // AccountService.test();
+    wx.toast.show('111', {key: 'chenzhe'})
+    wx.toast.show('222')
+    wx.toast.show('333')
+    wx.toast.show('555')
+    setTimeout( () => {
+      wx.toast.hide('chenzhe')
+    }, 200)
     
     // WXRequest.getIntance().post();
   },

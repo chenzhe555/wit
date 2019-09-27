@@ -1,64 +1,59 @@
-//显示策略: 1.有新的toast文本，则直接显示 2.有新的toast文本，排入队列
-const ToastUtilShowStrategy = {
-  Immediately: 1,
-  Queue: 2
-};
-
-//显示失败策略
-const ToastUtilShowFailStrategy = {
-  Continue: 1,
-  Retry: 2
-};
-
 /**
  * WX toast管理器类
  */
 export default class ToastManager {
   /*************************************************************属性*************************************************************/
+  //显示策略: 1.有新的toast文本，则直接显示 2.有新的toast文本，排入队列
+  static toastManagerStrategy = {
+    Immediately: 1,
+    Queue: 2
+  }
+  //失败策略: 1.忽略 2.重试
+  static toastManagerFailStrategy = {
+    Immediately: 1,
+    Queue: 2
+  }
   // 当前是否有toast文本正在显示
   static isShowingToast = false;
-  //通用Toast显示时间
-  static commonDuring = 3000;
+  // Toast显示默认时间
+  static defaultDuring = 1500;
   //显示队列
-  static ShowQueue = [];
+  static showQueue = [];
   //显示策略
-  static ShowStrategy = ToastUtilShowStrategy.Immediately;
+  static showStrategy = ToastManager.toastManagerStrategy.Immediately;
   //显示失败策略
-  static ShowFailStrategy = ToastUtilShowFailStrategy.Continue;
+  static showFailStrategy = ToastManager.toastManagerFailStrategy.Continue;
   //定时器
-  static ShowTimeoutCallback;
+  static showTimeoutCallback;
 
   /*************************************************************对外提供的方法*************************************************************/
   
   /**
    * 显示Toast
    * @param {string} msg 显示的Toast文本信息
-   * @param {*} config 
+   * @param {object} config 配置信息 {icon, image, duration, mask, key}, 其中key不是官方提供的值，是用于隐藏特定Key对应的Toast
    */
   static show = (msg = '', config = {}) => {
-    console.log(this); return;
     //空串 返回
     if (msg.length <= 0) return;
 
     //设置Toast相关配置信息
-    let toastConfig = Object.assign(
-      { title: msg, icon: 'none', duration: ToastUtil.commonDuring },
-      config
-    );
+    let toastConfig = Object.assign({ title: msg, icon: 'none', duration: this.defaultDuring }, config);
 
-    switch (ToastUtil.ShowStrategy) {
-      case ToastUtilShowStrategy.Immediately:
+    // 显示策略判断
+    switch (this.showStrategy) {
+      case this.toastManagerStrategy.Immediately:
         {
           //如果是立即，则直接执行微信Toast显示方法
           wx.showToast(toastConfig);
         }
         break;
-      case ToastUtilShowStrategy.Queue:
+      case this.toastManagerStrategy.Queue:
         {
           //如果是走队列，则把配置文件放入队列，执行显示Toast操作
-          ToastUtil.ShowQueue.push(toastConfig);
-          if (!ToastUtil.isShowingToast) {
-            ToastUtil.showToastFunc();
+          this.showQueue.push(toastConfig);
+          if (!this.isShowingToast) {
+            this._showToastFunc();
           }
         }
         break;
@@ -67,42 +62,49 @@ export default class ToastManager {
     }
   };
 
-  /*
-  隐藏Toast
-  key: 隐藏特定key值的Toast
-  */
+  /**
+   * 隐藏Toast
+   * @param {string} key 隐藏特定key值的Toast, 如果key不存在，则忽略
+   */
   static hide = (key = '') => {
-    switch (ToastUtil.ShowStrategy) {
-      case ToastUtilShowStrategy.Immediately:
+    switch (this.showStrategy) {
+      case this.toastManagerStrategy.Immediately:
         {
           //如果是立即，则直接执行微信Toast隐藏方法
           wx.hideToast();
         }
         break;
-      case ToastUtilShowStrategy.Queue:
+      case this.toastManagerStrategy.Queue:
         {
-          //如果是走队列，则清除定时器和第一个配置信息或者特定key对应的
-          if (ToastUtil.ShowQueue.length > 0) {
-            //清除第一个配置信息
+          // 如果是走队列，则清除定时器和第一个配置信息或者特定key对应的
+          if (this.showQueue.length > 0) {
+            // 默认清除第一个配置信息
             let cleanIndex = 0;
+            // 如果存在特定key，找出是否有符合的, cleanIndex设置为-1
             if (key.length > 0) {
+              cleanIndex = -1;
               let config = null;
-              //筛选出要清除的元素
-              for (let i = 0; i < ToastUtil.ShowQueue.length; ++i) {
-                config = ToastUtil.ShowQueue[i];
-                if (config['key'] == key) {
+              //筛选元素
+              for (let i = 0; i < this.showQueue.length; ++i) {
+                config = this.showQueue[i];
+                if (config['key'] === key) {
                   cleanIndex = i;
                   break;
                 }
               }
             }
 
-            //清除并重新显示,如果是第一个，停止定时；如果不是第一个，直接删除数组元素即可
-            ToastUtil.ShowQueue.splice(cleanIndex, 1);
-            if (cleanIndex == 0) {
-              clearTimeout(ToastUtil.ShowTimeoutCallback);
-              ToastUtil.showToastFunc();
+            // 清除并重新显示,如果是第一个，停止定时；如果不是第一个，直接删除数组元素即可
+            if (cleanIndex !== -1) {
+              this.showQueue.splice(cleanIndex, 1);
+              if (cleanIndex == 0) {
+                this._clean();
+                this._showToastFunc();
+              }
             }
+          } else {
+            wx.hideToast();
+            this._clean();
           }
         }
         break;
@@ -111,56 +113,53 @@ export default class ToastManager {
     }
   };
 
-  /*
-  修改显示策略
-  showStrategy: 1:前一个立即消失 2.依次消失
-  */
-  static modifyShowStrategy = (showStrategy = 1) => {
-    ToastUtil.ShowStrategy = showStrategy;
-  };
-
   /*************************************************************内部调用方法*************************************************************/
-  /*
-  显示Toast业务逻辑
-  */
-  static showToastFunc = () => {
+  /**
+   * 显示Toast业务逻辑
+   */
+  static _showToastFunc = () => {
     //如果队列里没有，则返回
-    if (ToastUtil.ShowQueue.length <= 0) {
-      ToastUtil.isShowingToast = false;
+    if (this.showQueue.length <= 0) {
+      this._clean();
       return;
     }
 
     //取出队列中第一个配置文件
-    let config = ToastUtil.ShowQueue[0];
-    if (ToastUtil.ShowFailStrategy == ToastUtilShowFailStrategy.Retry) {
+    let config = this.showQueue[0];
+
+    // TODO:失败暂未实测
+    if (this.showFailStrategy == this.toastManagerFailStrategy.Retry) {
       //如果选择失败重试，则实现Fail方法
-      config['fail'] = ToastUtil.showToastFail;
+      config['fail'] = this.showToastFail;
     }
+
     //显示Toast
-    ToastUtil.isShowingToast = true;
+    this.isShowingToast = true;
     wx.showToast(config);
+
     //设置定时器
-    ToastUtil.ShowTimeoutCallback = setTimeout(() => {
+    this.showTimeoutCallback && clearTimeout(this.showTimeoutCallback);
+    this.showTimeoutCallback = setTimeout(() => {
       //移除第一个配置
-      ToastUtil.ShowQueue.shift();
-      if (ToastUtil.ShowQueue.length > 0) {
-        //如果还有，继续执行
-        ToastUtil.showToastFunc();
-      } else {
-        //如果没有，不再执行
-        ToastUtil.isShowingToast = false;
-      }
+      this.showQueue.shift();
+      this._showToastFunc();
     }, config['duration']);
   };
+
+  /**
+   * 清理环境
+   */
+  static _clean = () => {
+    this.showTimeoutCallback && clearTimeout(this.showTimeoutCallback);
+    this.isShowingToast = false;
+  }
 
   /*
   wx.showToast调用失败，目前只对retry做处理
   */
   static showToastFail = () => {
-    if (ToastUtil.ShowFailStrategy == ToastUtilShowFailStrategy.Retry) {
-      //如果失败，清除定时器，并重新显示第一个配置
-      clearTimeout(ToastUtil.ShowTimeoutCallback);
-      ToastUtil.showToastFunc();
-    }
+    //如果失败，清除定时器，并重新显示第一个配置
+    this._clean();
+    this._showToastFunc();
   };
 }

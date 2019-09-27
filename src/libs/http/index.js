@@ -15,7 +15,7 @@ export default class HttpRequest {
     /**
      * 请求单例
      */
-    static getInstance() {
+    static getInstance = () => {
         if(!this.instance) {
             this.instance = new this;
         }
@@ -29,7 +29,7 @@ export default class HttpRequest {
      * @param {object} header 请求头
      * @param {object} extra 额外信息: dataType, responseType
      */
-    post(url = '', data = {}, header = {}, extra = {}) {
+    post = (url = '', data = {}, header = {}, extra = {}) => {
         // 判断请求接口是否存在
         if(url.length > 0) {
             return new Promise( (resolve, reject) => {
@@ -56,7 +56,7 @@ export default class HttpRequest {
      * 获取statusCode对应的文本信息
      * @param {object} data 返回非200的状态文本信息
      */
-    getHttpStatusCodeMsg(data = {}) {
+    getHttpStatusCodeMsg = (data = {}) => {
         let code = intval(data['statusCode'] || 0);
         let percentile = code/100;
         let decimals = code%100;

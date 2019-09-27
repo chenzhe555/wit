@@ -11,6 +11,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "cross-env": "^6.0.0",
     "del": "^5.1.0",
     "exit": "^0.1.2",
