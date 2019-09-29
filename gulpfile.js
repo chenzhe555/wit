@@ -9,16 +9,19 @@ const commandParams = require('./build/command/params').default;
 const gulp = require('gulp');
 const { task, series, parallel, watch } = gulp;
 
-// watch 
+// watch
 function watchProject() {
     watch(['src/**'], series('copy'));
     watch(['src/**/*.scss'], series('scss'));
-    watch(['src/**/*.js', 'app.js'], series('js'))
+    watch(['src/**/*.js', 'app.js'], series('js'));
 }
 
 // main
-if(commandParams.watch) {
-    task('default', series(['clean', parallel('copy', 'scss', 'js'), watchProject]))
-} else {
-    task('default', series(['clean', parallel('copy', 'scss', 'js')]))
-}
+
+task('default', series(['test']));
+
+// if (commandParams.watch) {
+//     task('default', series(['clean', parallel('copy', 'scss', 'js'), watchProject]));
+// } else {
+//     task('default', series(['clean', parallel('copy', 'scss', 'js')]));
+// }

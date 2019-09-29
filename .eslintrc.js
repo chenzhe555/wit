@@ -76,7 +76,7 @@ module.exports = {
         "no-obj-calls": 2,//不能调用内置的全局对象，比如Math() JSON()
         "no-octal": 2,//禁止使用八进制数字
         "no-octal-escape": 2,//禁止使用八进制转义序列
-        "no-param-reassign": 2,//禁止给参数重新赋值
+        "no-param-reassign": 1,//禁止给参数重新赋值
         "no-path-concat": 0,//node中不能使用__dirname或__filename做路径拼接
         "no-plusplus": 0,//禁止使用++，--
         "no-process-env": 0,//禁止使用process.env
@@ -106,7 +106,7 @@ module.exports = {
         "no-unneeded-ternary": 2,//禁止不必要的嵌套 var isYes = answer === 1 ? true : false;
         "no-unreachable": 2,//不能有无法执行的代码
         "no-unused-expressions": 2,//禁止无用的表达式
-        "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],//不能有声明后未被使用的变量或参数
+        "no-unused-vars": [1, {"vars": "all", "args": "after-used"}],//不能有声明后未被使用的变量或参数
         "no-use-before-define": 2,//未定义前不能使用
         "no-useless-call": 2,//禁止不必要的call和apply
         "no-void": 2,//禁用void操作符

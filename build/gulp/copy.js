@@ -1,5 +1,4 @@
-const gulp = require('gulp');
-const { task, src, dest } = gulp;
+const { task, src, dest } = require('gulp');
 const fs = require('fs');
 
 task('copy', callback => {

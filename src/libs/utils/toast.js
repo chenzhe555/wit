@@ -141,12 +141,10 @@ export default class ToastManager {
       wx.showToast(config);
 
       //设置定时器
-      if (this.showTimeoutCallback) {
-          clearTimeout(this.showTimeoutCallback);
-      }
       this.showTimeoutCallback = setTimeout(() => {
-      //移除第一个配置
+          //移除第一个配置
           this.showQueue.shift();
+          this._clean();
           this._showToastFunc();
       }, config['duration']);
   };

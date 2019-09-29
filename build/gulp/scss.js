@@ -1,12 +1,11 @@
-const gulp = require('gulp');
-const { src, dest } = gulp;
+const { task, src, dest } = require('gulp');
 const scss = require('gulp-sass');
 const rename = require('gulp-rename');
 const autoprefixer = require('gulp-autoprefixer');
 const postcss = require('gulp-postcss');
 const px2rpx = require('wx-px2rpx');
 
-gulp.task('scss', function (callback) {
+task('scss', function (callback) {
     console.log('scss替换为wxss');
 
     // scss文件转换

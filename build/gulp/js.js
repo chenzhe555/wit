@@ -1,5 +1,4 @@
-const gulp = require('gulp');
-const { task, src, dest } = gulp;
+const { task, src, dest } = require('gulp');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const aliases = require('gulp-wechat-weapp-src-alisa');
