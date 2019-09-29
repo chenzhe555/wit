@@ -9,5 +9,8 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "cz-custom-loading": "/components/loading/index"
+  }
 }

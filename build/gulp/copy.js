@@ -6,14 +6,13 @@ task('copy', callback => {
 
     // 复制文件到dist目录
     src([
-        'app.js',
         'app.json',
         'app.wxss',
         'sitemap.json',
-        'src/**',
+        'src/**/*.json',
         '!src/**/*.js',
         '!src/**/*.scss',
-        '!src/**/*.wxss'
+        'src/**/*.wxss'
     ]).pipe(dest('dist'));
 
     // 判断是否存在项目配置文件,如果不存在，则复制项目外的至此

@@ -1,11 +1,13 @@
 import wxAPIPromise from 'libs/api/promise';
 import Toast from 'libs/utils/toast.js';
+import Loading from 'libs/utils/loading.js';
 
 // wx扩展
 function extendWX () {
     wx.apis = wxAPIPromise();
     Toast.showStrategy = Toast.toastManagerStrategy.Queue;
     wx.toast = Toast;
+    wx.loading = Loading;
 }
 
 

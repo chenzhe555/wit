@@ -10,15 +10,15 @@ task('scss', function (callback) {
 
     // scss文件转换
     src(['src/**/*.scss'])
-    // outputStyle: nested, expanded, compact, compressed
+        // outputStyle: nested, expanded, compact, compressed
         .pipe(scss({'outputStyle': 'nested'}).on('error', scss.logError))
-    // px转rpx
+        // px转rpx
         .pipe(postcss([px2rpx({'proportion': 2})]))
-    // 补齐前缀
+        // 补齐前缀
         .pipe(autoprefixer())
-    // 文件后缀重命名
+        // 文件后缀重命名
         .pipe(rename({'extname': '.wxss'}))
-    // 输出
+        // 输出
         .pipe(dest('dist'));
 
     callback();

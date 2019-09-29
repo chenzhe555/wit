@@ -1,0 +1,36 @@
+.loading-main {
+    position: fixed;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.2);
+    top: 408rpx;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.loading {
+  width: 240rpx;
+  height: 4080rpx;
+  background-repeat: no-repeat;
+  background-size: 240rpx 4080rpx;
+  animation: loading 0.8s steps(17) infinite;
+}
+
+.image-wrapper {
+  width: 240rpx;
+  height: 240rpx;
+  overflow: hidden;
+}
+
+@keyframes loading {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0, -4080rpx, 0);
+  }
+}

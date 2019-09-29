@@ -7,20 +7,19 @@ const exit = require('exit');
 task('js', callback => {
     console.log('处理js文件');
 
-    src(['src/**/*.js', '*.js'])
-    // 地址别名替换
+    src(['src/**/*.js', '*.js', '!gulpfile.js'])
+        // 地址别名替换
         .pipe(aliases(require('../config/alias').default))
-    // babel,语法转换
+        // babel,语法转换
         .pipe(babel().on('error', function(error) {
             if (error) {
                 console.log(error);
             // exit(0)
             }
         }))
-    // 代码压缩
-    // .pipe(uglify({}))
-    // 输出
+        // 代码压缩
+        // .pipe(uglify({}))
+        // 输出
         .pipe(dest('dist'));
-
     callback();
 });

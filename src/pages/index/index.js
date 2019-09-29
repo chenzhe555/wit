@@ -13,18 +13,29 @@ Page({
     'bindViewTap': function() {
         // wx.apis.showToast({'title': '21kdabdbs12'});
         // wx.navigateTo({
-        //   url: '../logs/logs'
-        // })
+        //     'url': '../logs/log'
+        // });
         // AccountService.test();
-        wx.toast.show('111', {'key': 'chenzhe'});
-        wx.showLoading({
-            'title': '加载中'
-        });
-        wx.toast.show('1333', {'key': 'chenzhe'});
+        // wx.toast.show('111', {'key': 'chenzhe'});
+        // wx.showLoading({
+        //     'title': '加载中'
+        // });
+        // wx.toast.show('1333', {'key': 'chenzhe'});
 
         // WXRequest.getIntance().post();
+
+        console.log('tag', this.count);
+        if (this.count%2 === 1) {
+            wx.loading.showCustomLoading('aaaaaa');
+        } else {
+            wx.loading.hideCustomLoading();
+        }
+        this.count++;
+
+
     },
     'onLoad': function () {
+        this.count = 1;
         if (app.globalData.userInfo) {
             this.setData({
                 'userInfo': app.globalData.userInfo,

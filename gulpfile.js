@@ -14,14 +14,12 @@ function watchProject() {
     watch(['src/**'], series('copy'));
     watch(['src/**/*.scss'], series('scss'));
     watch(['src/**/*.js', 'app.js'], series('js'));
+    watch(['src/**/*.wxml', 'app.js'], series('modifywxml'));
 }
 
 // main
-
-task('default', series(['test']));
-
-// if (commandParams.watch) {
-//     task('default', series(['clean', parallel('copy', 'scss', 'js'), watchProject]));
-// } else {
-//     task('default', series(['clean', parallel('copy', 'scss', 'js')]));
-// }
+if (commandParams.watch) {
+    task('default', series(['clean', parallel('copy', 'images', 'scss', 'js'), 'modifywxml', watchProject]));
+} else {
+    task('default', series(['clean', parallel('copy', 'images', 'scss', 'js'), 'modifywxml']));
+}
