@@ -1,5 +1,5 @@
 import wxAPIPromise from 'libs/api/promise';
-import Toast from 'libs/utils/toast.js';
+import { Toast } from 'libs/npm/index.js';
 import Loading from 'libs/utils/loading.js';
 
 // wx扩展
@@ -20,13 +20,13 @@ App({
 
         extendWX();
 
+
         // 登录
         wx.login({
             'success': res => {
                 // 发送 res.code 到后台换取 openId, sessionKey, unionId
             }
         });
-
 
         // 获取用户信息
         wx.getSetting({

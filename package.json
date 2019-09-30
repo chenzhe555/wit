@@ -25,6 +25,7 @@
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.0",
     "gulp-babel": "^8.0.0",
+    "gulp-mp-modify-wxml": "git+https://github.com/chenzhe555/gulp-mp-modify-wxml.git",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
@@ -32,10 +33,14 @@
     "gulp-wechat-weapp-src-alisa": "^1.0.2",
     "minimist": "^1.2.0",
     "require-dir": "^1.2.0",
+    "webpack-stream": "^5.2.1",
     "wx-px2rpx": "^1.2.2"
   },
   "browserslist": [
     "iOS >= 9",
     "Android >= 4"
-  ]
+  ],
+  "dependencies": {
+    "mp-cz-toast-manager": "git+https://github.com/chenzhe555/mp-cz-toast-manager.git"
+  }
 }

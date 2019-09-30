@@ -1,7 +1,7 @@
 const { task, src, dest } = require('gulp');
-const addWxmlText = require('../plugins/wxml');
+const addWxmlText = require('gulp-mp-modify-wxml');
 
-const addParams = {'text': '', 'fileNames': ['index.wxml', 'log.wxml']};
+const addParams = {'text': '<cz-custom-loading id=\"cz-custom-loading\"/>', 'fileNames': ['index.wxml', 'log.wxml']};
 
 task('modifywxml', callback => {
     console.log('修改wxml文件');

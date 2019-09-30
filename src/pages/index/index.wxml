@@ -11,4 +11,3 @@
     <text class="user-motto">{{motto}}</text>
   </view>
 </view>
-<cz-custom-loading id="cz-custom-loading"/>

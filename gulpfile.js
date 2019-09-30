@@ -1,4 +1,4 @@
-// npm install --save-dev gulp exit gulp-sass minimist require-dir gulp-autoprefixer gulp-rename @babel/core gulp-babel gulp-uglify gulp-postcss wx-px2rpx gulp-wechat-weapp-src-alisa
+// npm install --save-dev gulp exit gulp-sass minimist require-dir gulp-autoprefixer gulp-rename @babel/core gulp-babel gulp-uglify gulp-postcss wx-px2rpx gulp-wechat-weapp-src-alisa webpack-stream
 
 
 // 拆分gulpfile
@@ -19,7 +19,7 @@ function watchProject() {
 
 // main
 if (commandParams.watch) {
-    task('default', series(['clean', parallel('copy', 'images', 'scss', 'js'), 'modifywxml', watchProject]));
+    task('default', series(['clean', parallel('copy', 'images', 'scss', 'js', 'npm'), 'modifywxml', watchProject]));
 } else {
-    task('default', series(['clean', parallel('copy', 'images', 'scss', 'js'), 'modifywxml']));
+    task('default', series(['clean', parallel('copy', 'images', 'scss', 'js', 'npm'), 'modifywxml']));
 }
