@@ -1,7 +1,9 @@
 //logs.js
 const util = require('../../utils/util.js');
 
-Page({
+import BasePage from '@/bases/BasePage.js';
+
+BasePage({
     'data': {
         'logs': []
     },

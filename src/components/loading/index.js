@@ -1,4 +1,6 @@
-Component({
+import BaseComponent from '@/bases/BaseComponent.js';
+
+BaseComponent({
     'data': {
         'show': false
     },

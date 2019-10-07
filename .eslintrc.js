@@ -105,7 +105,7 @@ module.exports = {
         "no-underscore-dangle": 0,//标识符不能以_开头或结尾
         "no-unneeded-ternary": 2,//禁止不必要的嵌套 var isYes = answer === 1 ? true : false;
         "no-unreachable": 2,//不能有无法执行的代码
-        "no-unused-expressions": 2,//禁止无用的表达式
+        "no-unused-expressions": 0,//禁止无用的表达式
         "no-unused-vars": [1, {"vars": "all", "args": "after-used"}],//不能有声明后未被使用的变量或参数
         "no-use-before-define": 2,//未定义前不能使用
         "no-useless-call": 2,//禁止不必要的call和apply
@@ -163,7 +163,7 @@ module.exports = {
         "prefer-spread": 0,//首选展开运算
         "prefer-reflect": 0,//首选Reflect的方法
         "quotes": [1, "single"],//引号类型 `` "" ''
-        "quote-props":[2, "always"],//对象字面量中的属性名是否强制双引号
+        "quote-props":[0],//对象字面量中的属性名是否强制双引号
         "radix": 2,//parseInt必须指定第二个参数
         "id-match": 0,//命名检测
         "require-yield": 0,//生成器函数必须有yield

@@ -2,9 +2,13 @@
 //获取应用实例
 const app = getApp();
 
-import { test } from '@/http/account.js';
+import { testRequest } from '@/http/account.js';
+import BasePage from '@/bases/BasePage.js';
 
-Page({
+BasePage({
+    props: {
+        testChenzhe: 'chnhabsy123'
+    },
     'data': {
         'motto': 'Hello World',
         'userInfo': {},
@@ -13,11 +17,10 @@ Page({
     },
     //事件处理函数
     'bindViewTap': function() {
-        wx.apis.showToast({'title': 'cc21kdabdbs12'});
-        // wx.navigateTo({
-        //     'url': '../logs/log'
-        // });
-        // AccountService.test();
+        // wx.apis.showToast({'title': 'cc21kdabdbs12'});
+        wx.navigateTo({
+            'url': '../logs/log'
+        });
         // wx.toast.show('111', {'key': 'chenzhe'});
         // wx.showLoading({
         //     'title': '加载中'
@@ -32,10 +35,9 @@ Page({
         // }
         // this.count++;
 
-        test();
-
+        // testRequest();
     },
-    'onLoad': function () {
+    onLoad: function () {
         this.count = 1;
         if (app.globalData.userInfo) {
             this.setData({
@@ -63,6 +65,7 @@ Page({
                 }
             });
         }
+        console.log(this.data);
     },
     'getUserInfo': function(e) {
         console.log(e);
