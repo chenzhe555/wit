@@ -2,6 +2,8 @@
 //获取应用实例
 const app = getApp();
 
+import { test } from '@/http/account.js';
+
 Page({
     'data': {
         'motto': 'Hello World',
@@ -11,7 +13,7 @@ Page({
     },
     //事件处理函数
     'bindViewTap': function() {
-        // wx.apis.showToast({'title': '21kdabdbs12'});
+        wx.apis.showToast({'title': 'cc21kdabdbs12'});
         // wx.navigateTo({
         //     'url': '../logs/log'
         // });
@@ -22,16 +24,15 @@ Page({
         // });
         // wx.toast.show('1333', {'key': 'chenzhe'});
 
-        // WXRequest.getIntance().post();
+        // console.log('tag', this.count);
+        // if (this.count%2 === 1) {
+        //     wx.loading.showCustomLoading('aaaaaa');
+        // } else {
+        //     wx.loading.hideCustomLoading();
+        // }
+        // this.count++;
 
-        console.log('tag', this.count);
-        if (this.count%2 === 1) {
-            wx.loading.showCustomLoading('aaaaaa');
-        } else {
-            wx.loading.hideCustomLoading();
-        }
-        this.count++;
-
+        test();
 
     },
     'onLoad': function () {

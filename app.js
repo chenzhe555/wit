@@ -1,10 +1,9 @@
-import wxAPIPromise from 'libs/api/promise';
-import { Toast } from 'libs/npm/index.js';
+import {ToastManager as Toast, CZUtils } from 'libs/npm/index.js';
 import Loading from 'libs/utils/loading.js';
 
 // wx扩展
 function extendWX () {
-    wx.apis = wxAPIPromise();
+    wx.apis = CZUtils.wxAPIPromise();
     Toast.showStrategy = Toast.toastManagerStrategy.Queue;
     wx.toast = Toast;
     wx.loading = Loading;
@@ -19,7 +18,6 @@ App({
         wx.setStorageSync('logs', logs);
 
         extendWX();
-
 
         // 登录
         wx.login({

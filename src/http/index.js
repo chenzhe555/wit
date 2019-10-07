@@ -1,4 +1,4 @@
-import HttpRequest from '@/libs/http/index.js';
+import { HttpRequest } from '@/libs/npm/index.js';
 
 export default class WXRequest extends HttpRequest {
 

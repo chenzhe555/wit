@@ -25,7 +25,7 @@
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.0",
     "gulp-babel": "^8.0.0",
-    "gulp-mp-modify-wxml": "git+https://github.com/chenzhe555/gulp-mp-modify-wxml.git",
+    "gulp-mp-modify-wxml": "0.0.2",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
@@ -41,6 +41,8 @@
     "Android >= 4"
   ],
   "dependencies": {
-    "mp-cz-toast-manager": "git+https://github.com/chenzhe555/mp-cz-toast-manager.git"
+    "mp-cz-request": "git+https://github.com/chenzhe555/mp-cz-request.git",
+    "mp-cz-toast-manager": "git+https://github.com/chenzhe555/mp-cz-toast-manager.git",
+    "mp-cz-utils": "git+https://github.com/chenzhe555/mp-cz-utils.git"
   }
 }
