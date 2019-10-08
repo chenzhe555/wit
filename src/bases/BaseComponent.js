@@ -1,3 +1,5 @@
+import { observercom } from '@/mp-cz-mobx/observercom.js';
+
 export default function BaseComponent(originPageOptions) {
     // 提取原始值
     const {
@@ -74,9 +76,8 @@ export default function BaseComponent(originPageOptions) {
         error: _error,
         show: _show,
         hide: _hide,
-        resize: _resize,
-        data: Object.assign(data, props)
+        resize: _resize
     });
 
-    return Component(injectPageOptions);
+    return Component(observercom(injectPageOptions));
 }

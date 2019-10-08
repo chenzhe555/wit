@@ -9,12 +9,14 @@ const commandParams = require('./build/command/params').default;
 const gulp = require('gulp');
 const { task, series, parallel, watch } = gulp;
 
+
 // watch
 function watchProject() {
     watch(['src/**'], series('copy'));
     watch(['src/**/*.scss'], series('scss'));
     watch(['src/**/*.js', 'app.js'], series('js'));
     watch(['src/**/*.wxml', 'app.js'], series('modifywxml'));
+    watch(['miniprogram_npm/**'], series('npm'));
 }
 
 // main

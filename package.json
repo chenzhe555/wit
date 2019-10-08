@@ -41,9 +41,9 @@
     "Android >= 4"
   ],
   "dependencies": {
+    "mp-cz-mobx": "git+https://github.com/chenzhe555/mp-cz-mobx.git",
     "mp-cz-request": "git+https://github.com/chenzhe555/mp-cz-request.git",
     "mp-cz-toast-manager": "git+https://github.com/chenzhe555/mp-cz-toast-manager.git",
-    "mp-cz-utils": "git+https://github.com/chenzhe555/mp-cz-utils.git",
-    "wechat-weapp-mobx": "^0.2.0"
+    "mp-cz-utils": "git+https://github.com/chenzhe555/mp-cz-utils.git"
   }
 }

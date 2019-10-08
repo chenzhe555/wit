@@ -3,11 +3,11 @@ const del = require('del');
 const exit = require('exit');
 
 // 删除dist文件夹下所有文件
-gulp.task('clean', function (callback) {
+gulp.task('clean', callback => {
     console.log('删除dist');
 
     // 不清除项目配置文件
-    del([
+    return del([
         'dist/**',
         '!dist/project.config.json'
     ]).then(paths => {

@@ -1,4 +1,6 @@
-export default function BasePage(originPageOptions) {
+import { observer } from '@/mp-cz-mobx/observer';
+
+function BasePage(originPageOptions) {
     /**
      * onLoad: 页面创建时执行
      * onShow: 页面出现在前台时执行
@@ -6,7 +8,7 @@ export default function BasePage(originPageOptions) {
      * onHide: 页面从前台变为后台时执行
      * onUnload: 页面销毁时执行
      */
-    const { data = {}, props = {}, onLoad = null, onShow = null, onReady = null, onHide = null, onUnload = null} = originPageOptions;
+    const { onLoad = null, onShow = null, onReady = null, onHide = null, onUnload = null} = originPageOptions;
 
     function _onLoad(options) {
         console.log('page_onLoad');
@@ -34,15 +36,16 @@ export default function BasePage(originPageOptions) {
     }
 
     // 合并属性值
-    const injectPageOptions = Object.assign(originPageOptions, {
+    const injectPageOptions = Object.assign({}, originPageOptions, {
         onLoad: _onLoad,
         onShow: _onShow,
         onReady: _onReady,
         onHide: _onHide,
-        onUnload: _onUnload,
-        data: Object.assign(data, props)
+        onUnload: _onUnload
     });
 
     // 返回Page对象
-    return Page(injectPageOptions);
+    return Page(observer(injectPageOptions));
 }
+
+export default BasePage;

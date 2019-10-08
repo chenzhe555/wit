@@ -3,4 +3,7 @@
   <view class="space" bind:tap="tapShowLoading">显示Loading</view>
   <view class="space" bind:tap="goToNewPage">跳转页面</view>
   <view class="space" bind:tap="requestTest">网络请求</view>
+  <view class="space" bind:tap="mobxAdd">mobx值修改</view>
+  <view class="space">Page_mobx值:{{props.home.count}}</view>
+  <test-mobx></test-mobx>
 </view>
