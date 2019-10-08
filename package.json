@@ -43,6 +43,7 @@
   "dependencies": {
     "mp-cz-request": "git+https://github.com/chenzhe555/mp-cz-request.git",
     "mp-cz-toast-manager": "git+https://github.com/chenzhe555/mp-cz-toast-manager.git",
-    "mp-cz-utils": "git+https://github.com/chenzhe555/mp-cz-utils.git"
+    "mp-cz-utils": "git+https://github.com/chenzhe555/mp-cz-utils.git",
+    "wechat-weapp-mobx": "^0.2.0"
   }
 }

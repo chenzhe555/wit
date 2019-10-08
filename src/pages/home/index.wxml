@@ -1,0 +1,6 @@
+<view class="main">
+  <view class="space" bind:tap="tapShowToast">显示Toast</view>
+  <view class="space" bind:tap="tapShowLoading">显示Loading</view>
+  <view class="space" bind:tap="goToNewPage">跳转页面</view>
+  <view class="space" bind:tap="requestTest">网络请求</view>
+</view>
