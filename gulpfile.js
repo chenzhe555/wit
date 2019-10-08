@@ -1,4 +1,4 @@
-// npm install --save-dev gulp exit gulp-sass minimist require-dir gulp-autoprefixer gulp-rename @babel/core gulp-babel gulp-uglify gulp-postcss wx-px2rpx gulp-wechat-weapp-src-alisa webpack-stream
+// npm install --save-dev gulp exit gulp-sass minimist require-dir gulp-autoprefixer gulp-rename @babel/core gulp-babel gulp-uglify gulp-postcss wx-px2rpx gulp-wechat-weapp-src-alisa
 
 
 // 拆分gulpfile
@@ -16,12 +16,11 @@ function watchProject() {
     watch(['src/**/*.scss'], series('scss'));
     watch(['src/**/*.js', 'app.js'], series('js'));
     watch(['src/**/*.wxml', 'app.js'], series('modifywxml'));
-    watch(['miniprogram_npm/**'], series('npm'));
 }
 
 // main
 if (commandParams.watch) {
-    task('default', series(['clean', parallel('copy', 'images', 'scss', 'js', 'npm'), 'modifywxml', watchProject]));
+    task('default', series(['clean', parallel('copy', 'images', 'scss', 'js'), 'npm', 'modifywxml', watchProject]));
 } else {
-    task('default', series(['clean', parallel('copy', 'images', 'scss', 'js', 'npm'), 'modifywxml']));
+    task('default', series(['clean', parallel('copy', 'images', 'scss', 'js'), 'npm', 'modifywxml']));
 }

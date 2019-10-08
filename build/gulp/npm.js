@@ -1,35 +1,22 @@
 const { task, src, dest } = require('gulp');
-const path = require('path');
-
-const webpack = require('webpack-stream');
+const del = require('del');
+const exit = require('exit');
 
 task('npm', function(callback) {
-    // const projectPath = path.join(__dirname, '../../');
-    // console.log('tag', projectPath);
-    // const aaa = src('app.js', { read: false })
-    //     .pipe(shell(['/Applications/wechatwebdevtools.app/Contents/MacOS/cli --build-npm ' + projectPath]));
-    // console.log('这里是什么', aaa);
+    console.log('复制npm文件');
 
     // 复制构建后的npm包
     src(['miniprogram_npm/**/*'])
-        .pipe(dest('dist/miniprogram_npm'));
-    callback();
+        .pipe(dest('dist/miniprogram_npm'))
+        .on('end', function() {
+            del([
+                'miniprogram_npm'
+            ]).then(paths => {
+                callback();
+            }).catch(error => {
+                console.log('删除miniprogram_npm文件失败,请检查后重试');
+                exit(0);
+                callback();
+            });
+        });
 });
-
-
-// const webpack = require('webpack-stream');
-
-// task('npm', function (callback) {
-//     console.log('构建npm');
-
-//     src(['src/libs/npm/index.js'])
-//         .pipe(webpack({
-//             'mode': 'production',
-//             'output': {
-//                 'libraryTarget': 'commonjs2',
-//                 'filename': 'index.js'
-//             }
-//         }))
-//         .pipe(dest('dist/libs/npm'));
-//     callback();
-// });

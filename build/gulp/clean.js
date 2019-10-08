@@ -7,7 +7,7 @@ gulp.task('clean', callback => {
     console.log('删除dist');
 
     // 不清除项目配置文件
-    return del([
+    del([
         'dist/**',
         '!dist/project.config.json'
     ]).then(paths => {

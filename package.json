@@ -4,8 +4,8 @@
   "description": "wit",
   "main": "a.js",
   "scripts": {
-    "build:dev": "gulp --watch",
-    "build": "gulp"
+    "build:dev": "sh mp_npm.sh && gulp --watch",
+    "build": "sh mp_npm.sh && gulp"
   },
   "author": "376811578@qq.com",
   "license": "MIT",
@@ -33,7 +33,6 @@
     "gulp-wechat-weapp-src-alisa": "^1.0.2",
     "minimist": "^1.2.0",
     "require-dir": "^1.2.0",
-    "webpack-stream": "^5.2.1",
     "wx-px2rpx": "^1.2.2"
   },
   "browserslist": [
