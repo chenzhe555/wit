@@ -11,8 +11,8 @@ BasePage({
     },
     //事件处理函数
     tapShowToast: function() {
-        wx.apis.showToast({'title': '11cc21kdabdbs12'});
-        // wx.toast.show('133cccc3', {'key': 'chenzhe'});
+        // wx.apis.showToast({'title': '11cc21kdabdbs12'});
+        wx.toast.show('133cccc3', {'key': 'chenzhe'});
     },
     tapShowLoading: function() {
         // wx.showLoading({
