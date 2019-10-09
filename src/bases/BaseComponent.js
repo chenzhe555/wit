@@ -16,9 +16,7 @@ export default function BaseComponent(originPageOptions) {
          * hide: 组件所在的页面被隐藏时执行
          * resize: 组件所在的页面尺寸变化时执行
          */
-        pageLifetimes: {show = null, hide = null, resize = null} = {},
-        props = {},
-        data = {}
+        pageLifetimes: {show = null, hide = null, resize = null} = {}
     } = originPageOptions;
 
     function _created() {
