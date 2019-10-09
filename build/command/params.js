@@ -12,4 +12,4 @@ const params = minimist(process.argv.slice(2), {
     }
 });
 
-exports.default = params;
+module.exports = params;

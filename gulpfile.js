@@ -5,10 +5,9 @@
 const requireDir = require('require-dir');
 requireDir('./build/gulp');
 // 命令行参数
-const commandParams = require('./build/command/params').default;
+const commandParams = require('./build/command/params');
 const gulp = require('gulp');
 const { task, series, parallel, watch } = gulp;
-
 
 // watch
 function watchProject() {
