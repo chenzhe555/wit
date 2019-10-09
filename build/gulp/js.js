@@ -7,7 +7,7 @@ const exit = require('exit');
 task('js', callback => {
     console.log('处理js文件');
 
-    src(['src/**/*.js', '*.js', '!gulpfile.js', '!src/libs/npm/index.js'])
+    src(['src/**/*.js', '*.js', '!gulpfile.js'])
         // 地址别名替换
         .pipe(aliases(require('../config/alias').default))
         // babel,语法转换
