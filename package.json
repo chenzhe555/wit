@@ -4,7 +4,7 @@
   "description": "wit",
   "main": "a.js",
   "scripts": {
-    "build:dev": "sh mp_npm.sh && gulp --watch",
+    "dev": "sh mp_npm.sh && gulp --watch",
     "build": "sh mp_npm.sh && gulp"
   },
   "author": "376811578@qq.com",
