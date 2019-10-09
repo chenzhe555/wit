@@ -65,7 +65,7 @@ export default function BaseComponent(originPageOptions) {
     }
 
     // 合并属性值
-    const injectPageOptions = Object.assign(originPageOptions, {
+    const injectPageOptions = Object.assign({}, originPageOptions, {
         created: _created,
         attached: _attached,
         ready: _ready,
