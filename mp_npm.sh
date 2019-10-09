@@ -8,9 +8,6 @@ currentPath=`pwd`
 currentPathArr=(`echo $currentPath | tr '/' ' '` )
 idePortFile='/'${currentPathArr[0]}'/'${currentPathArr[1]}'/Library/Application Support/微信开发者工具/Default/.ide'
 
-test="/Users/meicai/Desktop/Project/MiniGroup/wit/mp_npm.sh"
-
-# func
 
 # steps
 # 1.获取IDE端口号
